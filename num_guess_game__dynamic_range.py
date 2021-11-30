@@ -54,11 +54,14 @@ def launch_game():
         if not is_valid(input_num):
             print(f'Это не целое число от {min_num} до {max_num}')
             continue
+
         input_num = int(input_num)
 
-        if input_num > hidden_num:
+        if max_num >= input_num > hidden_num:
+            max_num = input_num
             print('Слишком много, попробуй еще раз')
-        elif input_num < hidden_num:
+        elif min_num <= input_num < hidden_num:
+            min_num = input_num
             print('Слишком мало, попробуй еще раз')
         elif input_num == hidden_num:
             print(f'Ура! Ты угадал число, поздравляю! \nКоличество потраченных попыток: {attempt}')
