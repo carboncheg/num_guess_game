@@ -9,12 +9,24 @@ def launch_game():
         if len(input_range) != 2:
             print('Нужно ввести 2 числа')
             continue
-        if not input_range[0].isdigit():
-            print('Это не числовой диапазон :-|')
-            continue
-        elif not input_range[1].isdigit():
-            print('Это не числовой диапазон :-|')
-            continue
+        if input_range[0][0] == '-':
+            if not input_range[0][1:].isdigit():
+                print('Это не числовой диапазон')
+                continue
+        if input_range[0][0] != '-':
+            if not input_range[0].isdigit():
+                print('Это не числовой диапазон')
+                continue
+        if input_range[1][0] == '-':
+            if not input_range[1][1:].isdigit():
+                print('Это не числовой диапазон')
+                continue
+        if input_range[1][0] != '-':
+            if not input_range[1].isdigit():
+                print('Это не числовой диапазон')
+                continue
+            else:
+                break
         else:
             break
 
@@ -25,7 +37,14 @@ def launch_game():
     hidden_num = randint(min_num, max_num)
 
     def is_valid(s):
-        return s.isdigit() and min_num <= int(s) <= max_num
+        num = input_num[1:]
+        if s.isdigit() and min_num <= int(s) <= max_num:
+            result = True
+        elif input_num[0] == '-' and num.isdigit() and min_num <= int(input_num) <= max_num:
+            result = True
+        else:
+            result = False
+        return result
 
     attempt = 0
 
@@ -33,7 +52,7 @@ def launch_game():
         input_num = input(f'Введи число от {min_num} до {max_num}: ')
         attempt += 1
         if not is_valid(input_num):
-            print(f'Это не целое число от {min_num} до {max_num} :-|')
+            print(f'Это не целое число от {min_num} до {max_num}')
             continue
         input_num = int(input_num)
 
@@ -56,4 +75,4 @@ while True:
     elif again in negative_answers:
         break
     else:
-        print('Я тебя не понял :-/')
+        print('Я тебя не понял')
