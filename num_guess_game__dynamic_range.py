@@ -71,11 +71,13 @@ launch_game()
 
 positive_answers = ['д', 'да', 'конечно', 'ага', 'угу']
 negative_answers = ['н', 'не', 'нет', 'неа']
+
 while True:
     again = input('Хочешь сыграть ещё раз? =) \n').lower()
     if again in positive_answers:
         launch_game()
     elif again in negative_answers:
+        print('Пока! Я буду скучать...')
         break
     else:
         print('Я тебя не понял')
